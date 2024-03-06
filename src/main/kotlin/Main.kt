@@ -1,28 +1,16 @@
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
 
 fun main() {
-    println("start of the program")
-
-    runBlocking {
-        println("coroutine started")
-
-        val job = launch{
-            val result = fetchData()
-            println(result)
+    val result1 = "Hello, Kotlin"
+        .let {
+            println(it)
+            it.length
         }
+    println("Length: $result1")
 
-        println("other tasks being performed")
-
-        job.join()
-
-        println("coroutine completed")
+    val result2 = with("Kotlin"){
+        println(length)
+        length
     }
-}
 
-suspend fun fetchData(): String{
-
-    delay(2000)
-    return "data fetched successfully"
+    println(result2)
 }
