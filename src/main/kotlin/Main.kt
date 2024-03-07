@@ -1,16 +1,20 @@
 
 fun main() {
-    val result1 = "Hello, Kotlin"
-        .let {
-            println(it)
-            it.length
+
+    val successMessage: Result = Result.Success("with good marks")
+    val errorMessage: Result = Result.Error("with bad marks")
+
+    handleResult(successMessage)
+    handleResult(errorMessage)
+}
+
+fun handleResult(result: Result){
+    when(result){
+       is Result.Success->{
+            println("Passed: ${result.data}")
         }
-    println("Length: $result1")
-
-    val result2 = with("Kotlin"){
-        println(length)
-        length
+        is Result.Error->{
+            println("Failed: ${result.data}")
+        }
     }
-
-    println(result2)
 }
